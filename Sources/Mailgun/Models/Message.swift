@@ -22,7 +22,7 @@ extension Mailgun {
       case from, to, replyTo = "h:Reply-To", cc, bcc, subject, text, html, attachment, template, recipientVariables = "recipient-variables"
     }
     
-    public init(from: String, to: String, replyTo: String? = nil, cc: String? = nil, bcc: String? = nil, subject: String, text: String?, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVariables: [String: [String: String]]? = nil) {
+    public init(from: String, to: String, replyTo: String? = nil, cc: String? = nil, bcc: String? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVariables: [String: [String: String]]? = nil) {
       self.from = from
       self.to = to
       self.replyTo = replyTo
@@ -36,7 +36,7 @@ extension Mailgun {
       self.recipientVariables = recipientVariables
     }
     
-    public init(from: String, to: [String], replyTo: String? = nil, cc: [String]? = nil, bcc: [String]? = nil, subject: String, text: String?, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVariables: [String: [String: String]]? = nil) {
+    public init(from: String, to: [String], replyTo: String? = nil, cc: [String]? = nil, bcc: [String]? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVariables: [String: [String: String]]? = nil) {
       self.from = from
       self.to = to.joined(separator: ",")
       self.replyTo = replyTo
@@ -50,7 +50,7 @@ extension Mailgun {
       self.recipientVariables = recipientVariables
     }
     
-    public init(from: String, to: [FullEmail], replyTo: String? = nil, cc: [FullEmail]? = nil, bcc: [FullEmail]? = nil, subject: String, text: String?, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVariables: [String: [String: String]]? = nil) {
+    public init(from: String, to: [FullEmail], replyTo: String? = nil, cc: [FullEmail]? = nil, bcc: [FullEmail]? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVariables: [String: [String: String]]? = nil) {
       self.from = from
       self.to = to.stringArray.joined(separator: ",")
       self.replyTo = replyTo
