@@ -94,11 +94,6 @@ public struct Mailgun: MailgunProvider {
   ///   - container: Container
   /// - Returns: Future<Response>
   public func send(_ content: Message, on container: Container) throws -> Future<Response> {
-    // If we have a recipient variables, we need to package the payload differently
-    if content.recipientVariables != nil {
-      return try sendWithRecipientVariabless(content, on: container)
-    }
-    
     let authKeyEncoded = try encode(apiKey: self.apiKey)
     
     var headers = HTTPHeaders([])
@@ -114,31 +109,6 @@ public struct Mailgun: MailgunProvider {
         try self.process(response)
     }
   }
-
-  /// Send message with template
-  ///
-  /// - Parameters:
-  ///   - content: Message
-  ///   - container: Container
-  /// - Returns: Future<Response>
-  public func sendWithRecipientVariabless(_ content: Message, on container: Container) throws -> Future<Response> {
-    let authKeyEncoded = try encode(apiKey: self.apiKey)
-    
-    var headers = HTTPHeaders([])
-    headers.add(name: HTTPHeaderName.authorization, value: "Basic \(authKeyEncoded)")
-    
-    let mailgunURL = "https://api.mailgun.net/v3/\(domain)/messages"
-
-    let request = Request(http: HTTPRequest(method: .GET, url: mailgunURL, headers: headers),
-                                  using: container)
-    try request.content.encode(content, as: .json)
-    try request.query.encode(content)
-    let client = try container.make(Client.self)
-    return client.send(request).map { response in
-        try self.process(response)
-    }
-  }
-
   
   /// Setup forwarding
   ///
