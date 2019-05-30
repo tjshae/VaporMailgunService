@@ -17,12 +17,13 @@ extension Mailgun {
     public let attachment: [File]?
     public let template: String?
     public let recipientVarsJSONString: String?
+    public let tag: String?
     
     private enum CodingKeys : String, CodingKey {
-      case from, to, replyTo = "h:Reply-To", cc, bcc, subject, text, html, attachment, template, recipientVarsJSONString = "recipient-variables"
+      case from, to, replyTo = "h:Reply-To", cc, bcc, subject, text, html, attachment, template, recipientVarsJSONString = "recipient-variables", tag = "o:tag"
     }
     
-    public init(from: String, to: String, replyTo: String? = nil, cc: String? = nil, bcc: String? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVarsJSONString: String? = nil) {
+    public init(from: String, to: String, replyTo: String? = nil, cc: String? = nil, bcc: String? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVarsJSONString: String? = nil, tag: String? = nil) {
       self.from = from
       self.to = to
       self.replyTo = replyTo
@@ -34,9 +35,10 @@ extension Mailgun {
       self.attachment = attachments
       self.template = template
       self.recipientVarsJSONString = recipientVarsJSONString
+      self.tag = tag
     }
     
-    public init(from: String, to: [String], replyTo: String? = nil, cc: [String]? = nil, bcc: [String]? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVarsJSONString: String? = nil) {
+    public init(from: String, to: [String], replyTo: String? = nil, cc: [String]? = nil, bcc: [String]? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVarsJSONString: String? = nil, tag: String? = nil) {
       self.from = from
       self.to = to.joined(separator: ",")
       self.replyTo = replyTo
@@ -48,9 +50,10 @@ extension Mailgun {
       self.attachment = attachments
       self.template = template
       self.recipientVarsJSONString = recipientVarsJSONString
+      self.tag = tag
     }
     
-    public init(from: String, to: [FullEmail], replyTo: String? = nil, cc: [FullEmail]? = nil, bcc: [FullEmail]? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVarsJSONString: String? = nil) {
+    public init(from: String, to: [FullEmail], replyTo: String? = nil, cc: [FullEmail]? = nil, bcc: [FullEmail]? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVarsJSONString: String? = nil, tag: String? = nil) {
       self.from = from
       self.to = to.stringArray.joined(separator: ",")
       self.replyTo = replyTo
@@ -62,6 +65,7 @@ extension Mailgun {
       self.attachment = attachments
       self.template = template
       self.recipientVarsJSONString = recipientVarsJSONString
+      self.tag = tag
     }
   }
 }
