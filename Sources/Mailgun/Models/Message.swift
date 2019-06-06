@@ -18,9 +18,10 @@ extension Mailgun {
     public let template: String?
     public let recipientVarsJSONString: String?
     public let tag: String?
+    public let userId: String = "%recipient.user_id%"
     
     private enum CodingKeys : String, CodingKey {
-      case from, to, replyTo = "h:Reply-To", cc, bcc, subject, text, html, attachment, template, recipientVarsJSONString = "recipient-variables", tag = "o:tag"
+      case from, to, replyTo = "h:Reply-To", cc, bcc, subject, text, html, attachment, template, recipientVarsJSONString = "recipient-variables", tag = "o:tag", userId = "v:user_id"
     }
     
     public init(from: String, to: String, replyTo: String? = nil, cc: String? = nil, bcc: String? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVarsJSONString: String? = nil, tag: String? = nil) {
