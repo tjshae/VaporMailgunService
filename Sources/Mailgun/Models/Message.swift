@@ -19,12 +19,13 @@ extension Mailgun {
     public let recipientVarsJSONString: String?
     public let tag: String?
     public let userId: String = "%recipient.user_id%"
+    public let templateVar: String?
     public let tracking: Bool = true
     public let trackingClicks: Bool = true
     public let trackingOpens: Bool = true
 
     private enum CodingKeys : String, CodingKey {
-      case from,to, replyTo = "h:Reply-To", cc, bcc, subject, text, html, attachment, template, recipientVarsJSONString = "recipient-variables", tag = "o:tag", userId = "v:user_id", tracking = "o:tracking", trackingClicks = "o:tracking-clicks", trackingOpens = "o:tracking-opens"
+      case from,to, replyTo = "h:Reply-To", cc, bcc, subject, text, html, attachment, template, recipientVarsJSONString = "recipient-variables", tag = "o:tag", userId = "v:user_id", templateVar = "v:template", tracking = "o:tracking", trackingClicks = "o:tracking-clicks", trackingOpens = "o:tracking-opens"
     }
     
     public init(from: String, to: String, replyTo: String? = nil, cc: String? = nil, bcc: String? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVarsJSONString: String? = nil, tag: String? = nil) {
@@ -38,6 +39,7 @@ extension Mailgun {
       self.html = html
       self.attachment = attachments
       self.template = template
+      self.templateVar = template
       self.recipientVarsJSONString = recipientVarsJSONString
       self.tag = tag
     }
@@ -53,6 +55,7 @@ extension Mailgun {
       self.html = html
       self.attachment = attachments
       self.template = template
+      self.templateVar = template
       self.recipientVarsJSONString = recipientVarsJSONString
       self.tag = tag
     }
@@ -68,6 +71,7 @@ extension Mailgun {
       self.html = html
       self.attachment = attachments
       self.template = template
+      self.templateVar = template
       self.recipientVarsJSONString = recipientVarsJSONString
       self.tag = tag
     }
