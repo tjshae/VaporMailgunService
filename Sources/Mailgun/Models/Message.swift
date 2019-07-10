@@ -41,7 +41,7 @@ extension Mailgun {
       self.template = template
       self.templateVar = template
       self.recipientVarsJSONString = recipientVarsJSONString
-      self.tag = tag
+      self.tag = tag ?? template
     }
     
     public init(from: String, to: [String], replyTo: String? = nil, cc: [String]? = nil, bcc: [String]? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVarsJSONString: String? = nil, tag: String? = nil) {
@@ -57,7 +57,7 @@ extension Mailgun {
       self.template = template
       self.templateVar = template
       self.recipientVarsJSONString = recipientVarsJSONString
-      self.tag = tag
+      self.tag = tag ?? template
     }
     
     public init(from: String, to: [FullEmail], replyTo: String? = nil, cc: [FullEmail]? = nil, bcc: [FullEmail]? = nil, subject: String, text: String? = nil, html: String? = nil, attachments: [File]? = nil, template: String? = nil, recipientVarsJSONString: String? = nil, tag: String? = nil) {
@@ -73,7 +73,7 @@ extension Mailgun {
       self.template = template
       self.templateVar = template
       self.recipientVarsJSONString = recipientVarsJSONString
-      self.tag = tag
+      self.tag = tag ?? template
     }
   }
 }
